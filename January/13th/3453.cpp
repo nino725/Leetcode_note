@@ -43,3 +43,29 @@ public:
         return (l+r) / 2;
     }
 };
+
+//差分加数学计算
+class Solution {
+public:
+    double separateSquares(vector<vector<int>>& squares) {
+        long long total = 0;
+        map<int,long long> diff;
+        for(auto& p : squares){
+            int y = p[1],l = p[2];
+            total += 1LL * l * l;
+            diff[y] += l;
+            diff[y+l] -= l;
+        }
+
+        long long area = 0, sum_l = 0;
+        for(auto it = diff.begin();;){
+            auto [y,sl] = *it;
+            int y2 = (++it)->first;
+            sum_l += sl;
+            area += sum_l * (y2 - y);
+            if(area*2 >= total){
+                return y2 - (area*2 - total)/(sum_l*2.0);
+            }
+        }
+    }
+};
