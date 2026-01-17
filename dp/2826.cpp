@@ -64,7 +64,7 @@ public:
     }
 };
 
-//贪心+二分 不可以使用，因为可以有重复元素g的值不好维护
+//贪心+二分 
 class Solution {
 public:
     int f(vector<int> &g, int val){
@@ -83,7 +83,7 @@ public:
     int minimumOperations(vector<int>& nums) {
         vector<int> g;
         for(int i = 0; i < nums.size(); i++){
-            int loc = f(g,nums[i]);
+            int loc = f(g,nums[i]+1);
             if(loc == g.size()){
                 g.push_back(nums[i]);
             }else{
