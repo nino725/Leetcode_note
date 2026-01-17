@@ -114,3 +114,27 @@ public:
         return n - f[n][3];
     }
 };
+//”≈ªØ
+class Solution {
+public:
+    int minimumOperations(vector<int>& nums) {
+        int f[4]{};
+        for(int x : nums){
+            f[x]++;
+            f[2] = max(f[1],f[2]);
+            f[3] = max(f[2],f[3]);
+        }
+        return nums.size() - f[3];
+    }
+};
+
+class Solution {
+public:
+    int minimumOperations(vector<int>& nums) {
+        int f[4]{};
+        for(int x : nums){
+            f[x] = *max_element(f + 1, f + x + 1) + 1;
+        }
+        return nums.size() - ranges::max(f);
+    }
+};
