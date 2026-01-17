@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <array>
 
 using namespace std;
 
@@ -91,5 +92,25 @@ public:
             }
         }
         return nums.size() - g.size();
+    }
+};
+
+//¶þÎ¬DP
+class Solution {
+public:
+    int minimumOperations(vector<int>& nums) {
+        int n = nums.size();
+        vector<array<int,4>> f(n+1);
+        for(int i = 0 ; i < nums.size(); i++){
+            int& x = nums[i];
+            for(int j = 1; j < 4; j++){
+                if(j < x){
+                    f[i+1][j] = f[i][j];
+                }else{
+                    f[i+1][j] = max(f[i][j], f[i][x] + 1);
+                }
+            }
+        }
+        return n - f[n][3];
     }
 };
