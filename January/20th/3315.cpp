@@ -20,3 +20,17 @@ ans[i] OR (ans[i] + 1) == nums[i]
 质数 指的是一个大于 1 的自然数，且它只有 1 和自己两个因数。
 */
 
+class Solution {
+public:
+    vector<int> minBitwiseArray(vector<int>& nums) {
+        for(int& x : nums){
+            if(x == 2){
+                x = -1;
+            }else{
+                int t = ~x;
+                x ^= (t & -t) >> 1;
+            }
+        }
+        return nums;
+    }
+};
