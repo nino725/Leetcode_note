@@ -22,17 +22,38 @@ class Solution {
 public:
     int minSumOfLengths(vector<int>& arr, int target) {
         int n = arr.size();
-        vector<int> f(n);
-        for(int i = 0; i < n; i++){
-            f[i+1] = f[i] + arr[i];
-        }
+        
+        vector<int> dp(n,1e9);
 
-        unordered_map<int,int> cnt;
-        for(int i = 0; i < n; i++){
-            int x = f[i + 1];
-            if(cnt.count(x - target)){
+        unordered_map<long long : int> cnt;
+        cnt[0] = -1;
+        
+        long long sum = 0;
+        int min_len = 1e9;
+        int best = 1e9;
 
+        for(int i = 0; i < n; i++){
+            sum += arr[i];
+
+            if(cnt.count(sum - target)){
+                int idx = cnt[sum - target];
+                int len = i - idx;
+
+                if(idx != -1 && dp[idx] != 1e9){
+                    min_len = min(min_len, len + dp[idx]);
+                }
+
+                best = min(best, len);
             }
+
+            if(i > 0){
+                dp[i] = min(dp[i-1],best);
+            }else{
+                dp[i] = best;
+            }
+
+            cnt[sum] = i;
         }
+        return (min_len >= 1e9) ? -1 : min_len;
     }
 };
