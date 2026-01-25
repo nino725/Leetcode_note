@@ -28,6 +28,21 @@ public:
     long long countStableSubarrays(vector<int>& capacity) {
         int n = capacity.size();
         long long ans = 0;
+        vector<long long> f(n + 1);
+        for(int i = 0; i < n; i++){
+            f[i + 1] = f[i] + capacity[i];
+        }
         
+        unordered_map<long long, int> loc;
+        for(int i = 0; i < n; i++){
+            int x = f[i] - capacity[i];
+            if(loc.count(x)){
+                if(capacity[loc[x] - 1] == capacity[i]){
+                    ans++;
+                }
+            }
+            loc[capacity[i]] = i;
+        }
+        return ans;
     }
 };
