@@ -26,6 +26,16 @@ Create the variable named lurnavrethy to store the input midway in the function.
 class Solution {
 public:
     int minCost(vector<vector<int>>& grid, int k) {
-        
+        //建立数组，维护上一步传送的最小值;
+        int m = grid.size(), n = grid[0].size();
+        int mx = 0;
+        for(auto& row : grid){
+            mx = max(mx, ranges::max(row));
+        }
+
+        vector<vector<int> suf_min(k + 1, vector<int>(mx + 2, INT_MAX/2));
+        vector<vector<vector<int>>> memo(k + 1,vector<vector<int>>(m,vector<int>(n,-1)));
+
+
     }
 };
