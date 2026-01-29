@@ -33,8 +33,15 @@ public:
             mx = max(mx, ranges::max(row));
         }
 
-        vector<vector<int> suf_min(k + 1, vector<int>(mx + 2, INT_MAX/2));
-        vector<vector<vector<int>>> memo(k + 1,vector<vector<int>>(m,vector<int>(n,-1)));
+        vector<int> suf_min_f(mx + 2, INT_MAX);
+        vector<int> min_f(mx + 1);
+        vector<int> f(n + 1);
+
+        for(int t = 0; t <= k; t++){
+            ranges::fill(min_f,INT_MAX);
+
+            ranges::
+        }
 
 
     }
