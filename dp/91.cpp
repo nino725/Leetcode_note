@@ -38,3 +38,22 @@ int main() {
     return 0;
 }
 
+class Solution {
+public:
+    int numDecodings(string s) {
+        int n = s.size();
+        auto isTrue = [&](int l, int r)->int{
+            if(s[l] == 0){
+                return false;
+            }
+            string num = "";
+            for(int i = l; i <= r; i++){
+                num += s[i];
+            }
+            return stoi(num) > 26 ? false : true;
+        }
+
+        vector memo(n, vector<int>(n));
+        auto f = [&]
+    }
+};
